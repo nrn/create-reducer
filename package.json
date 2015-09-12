@@ -1,0 +1,28 @@
+{
+  "name": "create-store",
+  "version": "0.0.1",
+  "description": "Create redux store from object of action handlers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Nick Niemeir <nick.niemeir@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nrn/create-store"
+  },
+  "dependencies": {
+    "lodash._slice": "^2.4.1"
+  },
+  "devDependencies": {
+    "tape": "^4.2.0"
+  },
+  "keywords": [
+    "create",
+    "compose",
+    "store",
+    "react",
+    "reduce"
+  ]
+}
