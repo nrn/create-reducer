@@ -1,30 +1,36 @@
 var slice = require('lodash._slice')
 
-createStore.compose = compose
+createReducer.compose = compose
 
-module.exports = createStore
+module.exports = createReducer
 
-function createStore (obj) {
-  return function (store, action) {
-    var fn = obj[action.type]
-    if (typeof fn === 'undefined') {
-      fn = obj['default']
-      if (typeof fn === 'undefined') fn = identity
+function createReducer (handlers, getInitialState) {
+  if (typeof getInitialState !== 'function') {
+    throw new Error('Must provide getInitialState function to be called when state is undefined.')
+  }
+  return function (state, action) {
+    if (typeof state === 'undefined') {
+      return getInitialState.apply(handlers, arguments)
     }
-    return fn(store, action)
+    return (
+      handlers[action.type] || handlers['default'] || identity
+    ).apply(handlers, arguments)
   }
 }
 
-function identity (store, action) {
-  return store
+function identity (state, action) {
+  return state
 }
 
-function compose (args) {
-  if (!Array.isArray(args)) args = slice(arguments)
-  return function (store, action) {
-    return args.reduce(function (last, cur) {
-      return cur(last, action)
-    }, store)
+function compose (fns) {
+  if (!Array.isArray(fns)) fns = slice(arguments)
+  return function () {
+    var args = slice(arguments)
+    var state = args.shift()
+    var self = this
+    return fns.reduce(function (last, cur) {
+      return cur.apply(self, [last].concat(args))
+    }, state)
   }
 }
 
