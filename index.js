@@ -8,18 +8,14 @@ function createReducer (handlers, getInitialState) {
   if (typeof getInitialState !== 'function') {
     throw new Error('Must provide getInitialState function to be called when state is undefined.')
   }
-  return function (state, action) {
-    if (typeof state === 'undefined') {
-      return getInitialState.apply(handlers, arguments)
+  return function () {
+    var args = slice(arguments)
+    if (typeof args[0] === 'undefined') {
+      args[0] = getInitialState.apply(handlers, args)
     }
-    return (
-      handlers[action.type] || handlers['default'] || identity
-    ).apply(handlers, arguments)
+    var toCall = args[1] && args[1].type && typeof handlers[args[1].type] === 'function' 
+    return toCall ? handlers[args[1].type].apply(handlers, args) : args[0]
   }
-}
-
-function identity (state, action) {
-  return state
 }
 
 function compose (fns) {

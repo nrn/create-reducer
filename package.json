@@ -1,7 +1,7 @@
 {
-  "name": "create-store",
+  "name": "create-reducer",
   "version": "0.0.1",
-  "description": "Create redux store from object of action handlers.",
+  "description": "Create reducer from object of action handlers, for use with redux.",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
@@ -10,7 +10,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nrn/create-store"
+    "url": "https://github.com/nrn/create-reducer"
   },
   "dependencies": {
     "lodash._slice": "^2.4.1"
@@ -23,6 +23,8 @@
     "compose",
     "store",
     "react",
-    "reduce"
+    "reduce",
+    "reducer",
+    "redux"
   ]
 }
