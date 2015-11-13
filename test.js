@@ -7,7 +7,7 @@ var handlers =
   , multiply: multiply
   , createSubtract: createSubtract
   // compose handler functions together for compound actions.
-  , addThenMultiply: createReducer.compose(add, multiply)
+  , addThenMultiply: createReducer.compose([add, multiply])
   }
 
 // create a reducer from the handlers, this is normaly what would be exported.
@@ -34,7 +34,7 @@ function createSubtract (state) {
 
 // enough example, lets run some tests.
 test('use reducer', function (t) {
-  var state = reducer()
+  var state = reducer(undefined, { type: 'n/a' })
   t.equal(state.num, 0, 'get initial state')
   state = reducer(state, {type: 'add', num: 1})
   t.equal(state.num, 1, 'add')

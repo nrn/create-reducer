@@ -1,6 +1,6 @@
 {
   "name": "create-reducer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Create reducer from object of action handlers, for use with redux.",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,7 @@
     "type": "git",
     "url": "https://github.com/nrn/create-reducer"
   },
-  "dependencies": {
-    "lodash._slice": "^2.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "tape": "^4.2.0"
   },
