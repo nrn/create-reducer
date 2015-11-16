@@ -21,12 +21,14 @@ var reducer = createReducer(handlers)
 
 // actual action handling functions, down out of the way.
 function add (state, action) {
-  state.num += action.num
-  return state
+  return {
+    num: state.num + action.num
+  }
 }
 
 function multiply (state, action) {
-  state.num *= action.num
-  return state
+  return {
+    num: state.num * action.num
+  }
 }
 ```
