@@ -57,3 +57,20 @@ test('use reducer', function (t) {
   t.end()
 })
 
+test('without initial state', function (t) {
+  var reducer = createReducer({
+    set: function (state, action) {
+      return action.payload
+    },
+    add: function (state, action) {
+      return state + action.payload
+    }
+  })
+
+  var state = undefined
+  state = reducer(state, {type: 'set', payload: 200})
+  t.equal(state, 200, 'set')
+  state = reducer(state, {type: 'add', payload: 60})
+  t.equal(state, 260, 'set')
+  t.end()
+})
