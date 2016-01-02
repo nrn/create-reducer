@@ -72,5 +72,11 @@ test('without initial state', function (t) {
   t.equal(state, 200, 'set')
   state = reducer(state, {type: 'add', payload: 60})
   t.equal(state, 260, 'set')
+
+  // realistic incorrect usage
+  t.throws(function () {
+    var reducer2 = createReducer({}, { num: 0 })
+  }, 'Can not create a confusingly broken reducer')
+
   t.end()
 })
