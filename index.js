@@ -7,6 +7,16 @@ function createReducer (handlers, getInitialState) {
   if (!(gisType === 'function' || gisType === 'undefined')) {
     throw new Error('If needed, second argument should be function to be called when state is undefined.')
   }
+
+  Object.keys(handlers).forEach(actionType => {
+    if (actionType == null) {
+      throw new Error(
+        'Actions may not have an undefined "type" property. ' +
+        'Have you misspelled a constant?'
+      )
+    }
+  })
+
   return function (state, action) {
     var handler = handlers[action.type]
     if (typeof state === 'undefined' && gisType === 'function') {
@@ -27,4 +37,3 @@ function compose (fns) {
     }, state)
   }
 }
-
